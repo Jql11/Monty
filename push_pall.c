@@ -9,47 +9,48 @@ int is_integer(const char *n)
 {
 	int i = 0;
 
-	if (number[0] == '-')
+	if (n[0] == '-')
 		i = 1;
 	for (; n[i] != 0; i++)
 	{
-		if (!isdigit(number[i]))
-			return (1);
+		if (!isdigit(n[i]))
+			return (-1);
 	}
 	return (0);
 
 }
+
 /**
  * push - push an element to the stack
  * @stack: stack to add to
  * @line_number: line number in monty file
  * @n: value of new node
- *
  */
 
-void push(stack_t **stack, unsigned int line_number, int n)
+void push(stack_t **stack, unsigned int line_number, const char *value)
 {
 	stack_t *new_node;
+	if (!stack)
+		return;
 
-	if (*stack == NULL || stack == NULL)
+	if (is_integer(value) == -1)
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		free_dlistint(stack);
 		exit(EXIT_FAILURE);
 	}
-
-	 /* create new node and allocate memory */
+	/* create new node and allocate memory */
 	new_node = malloc(sizeof(new_node));
 	if (new_node == NULL)
 		exit(EXIT_FAILURE);
 
-	new_node->n = n; /*give it a value*/
+	new_node->n = atoi(value); /*give it a value*/
 	new_node->next = *stack; /*point next to old head */
 	new_node->prev = NULL; /*point prev to NULL to indicate new head*/
 
 	if ((*stack) != NULL) /*point old head node prev to new node */
 		(*stack)->prev = new_node;
 	*stack = new_node; /*point head to new node */
-
 }
 
 /**
