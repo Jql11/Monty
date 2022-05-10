@@ -25,12 +25,12 @@ void handle_command(char *argv)
 	size_t bufsize = 0;
 	FILE *fd;
 	unsigned int line = 1;
-	stack_t *h = NULL;
+	stack_t *stack = NULL;
 
 	fd = fopen(argv, "r");
 	if (!fd)
 	{
-		fprintf(stderr, "Error: Can't open file <file>\n");
+		fprintf(stderr, "Error: Can't open file %s\n", argv);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&buffer, &bufsize, fd) != -1)
@@ -41,16 +41,20 @@ void handle_command(char *argv)
 			if (strcmp(token, "push") == 0)
 			{
 				token = strtok(NULL, " \n\t\a\r");
+				push(&stack, line, token);
+				line++;
+				token = strtok(NULL, " \n\t\a\r");
 				continue;
 			}
 			else
 			{
 				if (ops(token) != 0)
-					ops(token)(&h, line);
+				{
+					ops(token)(&stack, line);
+				}
 				else
 				{
-					free_dlistint(&h);
-					free(buffer);
+					free_dlistint(&stack);
 					fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
 					fclose(fd);
 					exit(EXIT_FAILURE);
@@ -60,7 +64,7 @@ void handle_command(char *argv)
 			token = strtok(NULL, " \n\t\a\r");
 		}
 	}
-	free_dlistint(&h);
+	free_dlistint(&stack);
 	free(buffer);
 	fclose(fd);
 }
