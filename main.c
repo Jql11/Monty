@@ -45,7 +45,7 @@ int main(int ac, char *argv[])
 					ops(&h, line, token);
 				else
 				{
-					free_dlist(&h);
+					free_dlistint(&h);
 					free(buffer);
 					fprintf(STDERR_FILENO, "L%u: unknown instruction %s\n", line, token);
 					close(fd);
@@ -57,7 +57,7 @@ int main(int ac, char *argv[])
 		}
 
 	}
-	free_dlist(&h);
+	free_dlistint(&h);
 	free(buffer);
 	close(fd);
 	return (0);
