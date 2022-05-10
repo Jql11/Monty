@@ -28,8 +28,7 @@ void ops(stack_t **stack, unsigned int line_number, char *opcode)
 	{
 		if (strcmp(opcode, ops[i].opcode == 0))
 		{
-			ops[i].f(stack, line_number);
-			return;
+			return (ops[i].f);
 		}
 		i++;
 	}
