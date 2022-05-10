@@ -1,6 +1,37 @@
 #include "main.h"
 
-void push(stack_t **stack, unsigned int line_number);
+/**
+ * push - push an element to the stack
+ * @stack: stack to add to
+ * @line_number: line number in monty file
+ * @n: value of new node
+ *
+ */
+
+void push(stack_t **stack, unsigned int line_number, int n);
+{
+	stack_t *new_node;
+
+	if ((*stack) == NULL)
+	{
+		fprintf("L%d: usage: push integer", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	 /* create new node and allocate memory */
+	new_node = malloc(sizeof(new_node));
+	if (new_node == NULL)
+		exit(EXIT_FAILURE);
+
+	new_node->n = n; /*give it a value*/
+	new_node->next = *stack; /*point next to old head */
+	new_node->prev = NULL; /*point prev to NULL to indicate new head*/
+
+	if ((*stack) != NULL) /*point old head node prev to new node */
+		(*stack)->prev = new_node;
+	*stack = new_node; /*point head to new node */
+
+}
 
 /**
  * pall - print all values on the stack
