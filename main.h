@@ -40,11 +40,12 @@ typedef struct instruction_s
 } instruction_t;
 
 void free_dlistint(stack_t **head);
-void push(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number, int n);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void ops(stack_t **stack, unsigned int line_number);
+
 #endif
