@@ -9,11 +9,11 @@ void free_dlistint(stack_t **head)
 {
 	stack_t *tmp;
 
-	tmp = *head
+	tmp = *head;
 	while (*head != NULL)
 	{
-		head = (*head)->next;
-		free((tmp);
+		*head = (*head)->next;
+		free(tmp);
 	}
 }
 /**
