@@ -48,4 +48,5 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void (*ops(char *opcode))(stack_t **stack, unsigned int line_number);
 void handle_command(char *argv);
+int is_integer(const char *n);
 #endif

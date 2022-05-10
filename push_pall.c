@@ -1,5 +1,24 @@
 #include "main.h"
+/**
+  *is_integer - check if int is integer
+  *@n: number
+  *return: 0 on success
+  */
+  
+int is_integer(const char *n)
+{
+	int i = 0;
 
+	if (number[0] == '-')
+		i = 1;
+	for (; n[i] != 0; i++)
+	{
+		if (!isdigit(number[i]))
+			return (1);
+	}
+	return (0);
+
+}
 /**
  * push - push an element to the stack
  * @stack: stack to add to
@@ -8,13 +27,13 @@
  *
  */
 
-void push(stack_t **stack, unsigned int line_number, int n);
+void push(stack_t **stack, unsigned int line_number, int n)
 {
 	stack_t *new_node;
 
 	if ((*stack) == NULL)
 	{
-		fprintf("L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -47,8 +66,11 @@ void push(stack_t **stack, unsigned int line_number, int n);
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
+
 	(void)line_number;
 
+	if (!stack || !*stack)
+		return;
 	while (temp != NULL)
 	{
 		printf("%d\n", temp->n);
@@ -70,7 +92,7 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-	if (stack == NULL)
+	if (!stack || !*stack)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
