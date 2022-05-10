@@ -8,7 +8,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <sys/types.h>
-
+#include <ctype.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,12 +40,13 @@ typedef struct instruction_s
 } instruction_t;
 
 void free_dlistint(stack_t **head);
-void push(stack_t **stack, unsigned int line_number, int n);
+void push(stack_t **stack, unsigned int line_number, const char *value);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **h, unsigned int line_number);
 void (*ops(char *opcode))(stack_t **stack, unsigned int line_number);
 void handle_command(char *argv);
 int is_integer(const char *n);
