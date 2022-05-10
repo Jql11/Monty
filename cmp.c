@@ -14,13 +14,13 @@ void (*ops(char *opcode))(stack_t **stack, unsigned int line_number)
 	int i = 0;
 
 	instruction_t ops[] = {
-/*		{"push", push},*/
+		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-/*		{"swap", swap},
+/*		{"swap", swap}, */
 		{"add", add},
-		{"nop", nop},*/
+/*		{"nop", nop},*/
 		{NULL, NULL}
 	};
 
