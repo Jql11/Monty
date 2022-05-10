@@ -12,9 +12,9 @@ void push(stack_t **stack, unsigned int line_number, int n);
 {
 	stack_t *new_node;
 
-	if ((*stack) == NULL)
+	if (*stack == NULL || stack == NULL)
 	{
-		fprintf("L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -70,11 +70,43 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-	if (stack == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	printf("%d\n", temp->n);
+}
+
+/**
+ * add - sums values of 2 top elements
+ * @stack: the stack to assess
+ * @line_number: line number from monty
+ *
+ * Description: sum values of 2 top elements
+ *
+ * Return: void
+ */
+
+void add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+	int i = 0, sum;
+
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		i++;
+	}
+
+	if (i < 2)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	sum = (*stack)->n + (*stack)->next->n;
+	(*stack)->next->n = sum;
+	(*stack)->prev = NULL;
 }
