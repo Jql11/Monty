@@ -1,5 +1,5 @@
 #include "main.h"
-0;136;0c
+
 /**
  * add - sums values of 2 top elements
  * @stack: the stack to assess
