@@ -36,7 +36,7 @@ void handle_command(char *argv)
 	while (getline(&buffer, &bufsize, fd) != -1)
 	{
 		token = strtok(buffer, " \n\t\a\r");
-		if (token == NULL)
+		if (token == NULL || *token == '#')
 			continue;
 		else
 		{
