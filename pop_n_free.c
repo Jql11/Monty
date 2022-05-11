@@ -18,11 +18,13 @@ void free_dlistint(stack_t **head)
 }
 /**
  * pop - deletes top node of doubly linked list
- * @h: pointer to head of doubly linked list
+ * @stack: pointer to head of doubly linked list
+ * @line_number: line number
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current;
+
 	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L<%u>: can't pop an empty stack\n", line_number);
