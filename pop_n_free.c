@@ -28,17 +28,19 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L<%u>: can't pop an empty stack\n", line_number);
+		free_dlistint(stack);
 		exit(EXIT_FAILURE);
 	}
 	current = *stack;
-	if (current->next == NULL)
+	if ((*stack)->next == NULL)
 	{
-		*stack = (*stack)->next;
+		*stack = NULL;
 		free(current);
 	}
 	else
 	{
-		current->next->prev = NULL;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
 		free(current);
 	}
 }

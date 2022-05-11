@@ -1,9 +1,9 @@
 #include "monty.h"
 
 /**
-  *is_integer - check if int is integer
-  *@n: number
-  *return: 0 on success
+  * is_integer - check if int is integer
+  * @n: number
+  * Return: 0 on success
   */
 
 int is_integer(const char *n)
@@ -12,7 +12,7 @@ int is_integer(const char *n)
 
 	if (n[0] == '-')
 		i = 1;
-	for (; n[i] != 0; i++)
+	for (; n[i] != '\0'; i++)
 	{
 		if (!isdigit(n[i]))
 			return (-1);
@@ -25,7 +25,7 @@ int is_integer(const char *n)
  * push - push an element to the stack
  * @stack: stack to add to
  * @line_number: line number in monty file
- * @n: value of new node
+ * @value: value of new node
  */
 
 void push(stack_t **stack, unsigned int line_number, const char *value)
@@ -35,10 +35,8 @@ void push(stack_t **stack, unsigned int line_number, const char *value)
 	if (!stack || is_integer(value) == -1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free_dlistint(stack);
 		exit(EXIT_FAILURE);
 	}
-
 	/* create new node and allocate memory */
 	new_node = malloc(sizeof(new_node));
 	if (new_node == NULL)
@@ -53,6 +51,7 @@ void push(stack_t **stack, unsigned int line_number, const char *value)
 	if ((*stack) != NULL) /*point old head node prev to new node */
 		(*stack)->prev = new_node;
 	*stack = new_node; /*point head to new node */
+
 }
 
 /**

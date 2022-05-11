@@ -2,12 +2,10 @@
 
 /**
  * ops - dictionary of functions
- * @opcode: operation to match
- * @stack: stack
- * @line_number: line number
+ * @opcode: opcode
+ *Return: ops
  */
-
-void ops(char *opcode, stack_t **stack, unsigned int line_number)
+void (*ops(char *opcode))(stack_t **stack, unsigned int line_number)
 {
 	unsigned int i = 0;
 
@@ -28,11 +26,9 @@ void ops(char *opcode, stack_t **stack, unsigned int line_number)
 	{
 		if (strcmp(opcode, ops[i].opcode) == 0)
 		{
-			ops[i].f(stack, line_number);
-			return;
+			return (ops[i].f);
 		}
 		i++;
 	}
-	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-	exit(EXIT_FAILURE);
+	return (NULL);
 }
