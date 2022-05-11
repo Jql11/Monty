@@ -21,9 +21,9 @@ int main(int ac, char *argv[])
  */
 void handle_command(char *argv)
 {
-	char *buffer, *token;
-	size_t bufsize = 0;
+	char *buffer;
 	FILE *fd;
+	size_t bufsize = 0;
 	unsigned int line = 1;
 	stack_t *stack = NULL;
 
@@ -35,36 +35,13 @@ void handle_command(char *argv)
 	}
 	while (getline(&buffer, &bufsize, fd) != -1)
 	{
-		token = strtok(buffer, " \n\t\a\r");
-		while (token != NULL)
-		{
-			if (strcmp(token, "push") == 0)
-			{
-				token = strtok(NULL, " \n\t\a\r");
-				push(&stack, line, token);
-				line++;
-				token = strtok(NULL, " \n\t\a\r");
-				continue;
-			}
-			else
-			{
-				if (ops(token) != 0)
-				{
-					ops(token)(&stack, line);
-				}
-				else
-				{
-					free_dlistint(&stack);
-					fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
-					fclose(fd);
-					exit(EXIT_FAILURE);
-				}
-			}
-			line++;
-			token = strtok(NULL, " \n\t\a\r");
-		}
+		_token(buffer);
+		line++;
 	}
 	free_dlistint(&stack);
 	free(buffer);
 	fclose(fd);
 }
+
+
+

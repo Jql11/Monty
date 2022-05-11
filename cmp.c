@@ -9,9 +9,9 @@
  * Return: pointer to function
  */
 
-void (*ops(char *opcode))(stack_t **stack, unsigned int line_number)
+void ops(char *opcode, stack_t **stack, unsigned int line_number)
 {
-	int i = 0;
+	unsigned int i = 0;
 
 	instruction_t ops[] = {
 		{"pall", pall},
@@ -27,9 +27,12 @@ void (*ops(char *opcode))(stack_t **stack, unsigned int line_number)
 	{
 		if (strcmp(opcode, ops[i].opcode) == 0)
 		{
-			return (ops[i].f);
+			printf("there is match ops\n");
+			ops[i].f(stack, line_number);
+			return;
 		}
 		i++;
 	}
-	return (NULL);
+	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+	exit(EXIT_FAILURE);
 }
