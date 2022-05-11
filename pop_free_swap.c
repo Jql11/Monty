@@ -48,9 +48,9 @@ void pop(stack_t **stack, unsigned int line_number)
  * @h: head of list
  * @line_number: bytecode line number
  */
-void nop(stack_t **h, unsigned int line_number)
+void nop(stack_t **stack, unsigned int line_number)
 {
-	(void) h;
+	(void) stack;
 	(void) line_number;
 }
 /**
