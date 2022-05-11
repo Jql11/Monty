@@ -3,10 +3,8 @@
 /**
  * ops - dictionary of functions
  * @opcode: operation to match
- *
- * Description: dictionary of functions
- *
- * Return: pointer to function
+ * @stack: stack
+ * @line_number: line number
  */
 
 void ops(char *opcode, stack_t **stack, unsigned int line_number)
