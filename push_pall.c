@@ -1,10 +1,11 @@
 #include "main.h"
-0;136;0c/**
+
+/**
   *is_integer - check if int is integer
   *@n: number
   *return: 0 on success
   */
-  
+
 int is_integer(const char *n)
 {
 	int i = 0;
