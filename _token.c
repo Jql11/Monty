@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
   *token - token opcode
   *@buffer: buffer;

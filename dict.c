@@ -1,11 +1,11 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * ops - dictionary of functions
- * @stack:
- * @line_number:
- * @opcode:
- * Description:
+ * @opcode: operation to match
+ *
+ * Description: dictionary of functions
+ *
  * Return: pointer to function
  */
 
@@ -17,9 +17,12 @@ void ops(char *opcode, stack_t **stack, unsigned int line_number)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-/*		{"swap", swap}, 
+		/*	{"swap", swap}, */
 		{"add", add},
-		{"nop", nop},*/
+		{"sub", sub},
+		{"mul", mul},
+		{"mod", mod},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
