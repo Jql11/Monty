@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
   *is_integer - check if int is integer
@@ -31,6 +31,8 @@ int is_integer(const char *n)
 void push(stack_t **stack, unsigned int line_number, const char *value)
 {
 	stack_t *new_node;
+	int val;
+
 	if (!stack)
 		return;
 
@@ -40,12 +42,17 @@ void push(stack_t **stack, unsigned int line_number, const char *value)
 		free_dlistint(stack);
 		exit(EXIT_FAILURE);
 	}
+
+	val = atoi(value);
 	/* create new node and allocate memory */
 	new_node = malloc(sizeof(new_node));
 	if (new_node == NULL)
+	{
+		free_dlistint(stack);
 		exit(EXIT_FAILURE);
+	}
 
-	new_node->n = atoi(value); /*give it a value*/
+	new_node->n = val; /*give it a value*/
 	new_node->next = *stack; /*point next to old head */
 	new_node->prev = NULL; /*point prev to NULL to indicate new head*/
 
