@@ -1,5 +1,5 @@
 #include "main.h"
-
+0;136;0c
 /**
  * add - sums values of 2 top elements
  * @stack: the stack to assess
@@ -75,7 +75,7 @@ void sub(stack_t **stack, unsigned int line_number)
  * Return: void
  */
 
-void div(stack_t **stack, unsigned int line_number)
+void _div(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	int i = 0, quotient;
