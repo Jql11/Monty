@@ -31,28 +31,22 @@ int is_integer(const char *n)
 void push(stack_t **stack, unsigned int line_number, const char *value)
 {
 	stack_t *new_node;
-	int val;
 
-	if (!stack)
-		return;
-
-	if (is_integer(value) == -1)
+	if (!stack || is_integer(value) == -1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_dlistint(stack);
 		exit(EXIT_FAILURE);
 	}
 
-	val = atoi(value);
 	/* create new node and allocate memory */
 	new_node = malloc(sizeof(new_node));
 	if (new_node == NULL)
 	{
-		free_dlistint(stack);
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-
-	new_node->n = val; /*give it a value*/
+	new_node->n = atoi(value); /*give it a value*/
 	new_node->next = *stack; /*point next to old head */
 	new_node->prev = NULL; /*point prev to NULL to indicate new head*/
 
