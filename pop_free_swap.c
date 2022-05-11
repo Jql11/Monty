@@ -60,7 +60,8 @@ void nop(stack_t **h, unsigned int line_number)
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = NULL;
+	stack_t *tmp = *stack;
+	int newint;
 
 	(void) line_number;
 	if ((*stack)->next == NULL || *stack == NULL || stack == NULL)
@@ -69,11 +70,14 @@ void swap(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
-	(*stack)->next = tmp->next;
+	newint = (*stack)->n;
+	(*stack)->n = tmp->n;
+	tmp->n = newint;
+/*	(*stack)->next = tmp->next;
 	tmp->prev = NULL;
 	(*stack)->prev = tmp;
 	if (tmp->next != NULL)
 		(*stack)->next->prev = *stack;
 	tmp->next = *stack;
-	*stack = tmp;
+	*stack = tmp;*/
 }
