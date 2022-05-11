@@ -11,6 +11,7 @@ void (*ops(char *opcode))(stack_t **stack, unsigned int line_number)
 
 	instruction_t ops[] = {
 		{"pall", pall},
+		{"push", push},
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},

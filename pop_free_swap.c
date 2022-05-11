@@ -5,14 +5,14 @@
  *@head: head
  * Return: void
  */
-void free_dlistint(stack_t **head)
+void free_dlistint(stack_t *stack)
 {
 	stack_t *tmp = NULL;
 
-	tmp = *head;
-	while (*head != NULL)
+	while (stack != NULL)
 	{
-		*head = (*head)->next;
+		tmp = stack;
+		stack = (stack)->next;
 		free(tmp);
 	}
 }

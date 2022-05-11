@@ -23,9 +23,9 @@ void handle_command(char *argv)
 {
 	stack_t *stack = NULL;
 	size_t bufsize = 0;
-	FILE *fd;
+	FILE *fd = NULL;
 	unsigned int line = 1;
-	char *buffer, *token, *value;
+	char *buffer = NULL, *token = NULL;
 
 	fd = fopen(argv, "r");
 	if (!fd)
@@ -38,11 +38,6 @@ void handle_command(char *argv)
 		token = strtok(buffer, " \n\t\a\r");
 		if (token == NULL || *token == '#')
 			continue;
-		if (strcmp(token, "push") == 0)
-		{
-			value = strtok(NULL, " \n\t\a\r");
-			push(&stack, line, value);
-		}
 		else
 		{
 			if (!ops(token))
@@ -55,8 +50,8 @@ void handle_command(char *argv)
 		}
 		line++;
 	}
-	free_dlistint(&stack);
 	free(buffer);
+	free_dlistint(stack);
 	fclose(fd);
 }
 

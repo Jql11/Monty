@@ -18,7 +18,6 @@ int is_integer(const char *n)
 			return (-1);
 	}
 	return (0);
-
 }
 
 /**
@@ -28,30 +27,32 @@ int is_integer(const char *n)
  * @value: value of new node
  */
 
-void push(stack_t **stack, unsigned int line_number, const char *value)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
+	stack_t *new_node = NULL;
+	char *value;
 
+	value = strtok(NULL, " \n\t\a\r");
 	if (!stack || is_integer(value) == -1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	/* create new node and allocate memory */
-	new_node = malloc(sizeof(new_node));
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new_node->n = atoi(value); /*give it a value*/
+
+	new_node->n = atoi(value);/*give it a value*/
 	new_node->next = *stack; /*point next to old head */
 	new_node->prev = NULL; /*point prev to NULL to indicate new head*/
 
 	if ((*stack) != NULL) /*point old head node prev to new node */
 		(*stack)->prev = new_node;
 	*stack = new_node; /*point head to new node */
-
 }
 
 /**
