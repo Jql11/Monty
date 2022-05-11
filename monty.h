@@ -1,6 +1,5 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -51,8 +50,7 @@ void sub(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void nop(stack_t **h, unsigned int line_number);
-void ops(char *opcode, stack_t **stack, unsigned int line_number);
+void (*ops(char *opcode))(stack_t **stack, unsigned int line_number);
 void handle_command(char *argv);
 int is_integer(const char *n);
-int _token(char *buffer);
 #endif

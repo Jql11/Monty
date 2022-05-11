@@ -21,11 +21,11 @@ int main(int ac, char *argv[])
  */
 void handle_command(char *argv)
 {
-	char *buffer;
-	FILE *fd;
-	size_t bufsize = 0;
-	unsigned int line = 1;
 	stack_t *stack = NULL;
+	size_t bufsize = 0;
+	FILE *fd;
+	unsigned int line = 1;
+	char *buffer, *token, *value;
 
 	fd = fopen(argv, "r");
 	if (!fd)
@@ -35,7 +35,24 @@ void handle_command(char *argv)
 	}
 	while (getline(&buffer, &bufsize, fd) != -1)
 	{
-		_token(buffer);
+		token = strtok(buffer, " \n\t\a\r");
+		if (token == NULL || *token == '#')
+			continue;
+		if (strcmp(token, "push") == 0)
+		{
+			value = strtok(NULL, " \n\t\a\r");
+			push(&stack, line, value);
+		}
+		else
+		{
+			if (!ops(token))
+			{
+				fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
+				exit(EXIT_FAILURE);
+			}
+			else
+				ops(token)(&stack, line);
+		}
 		line++;
 	}
 	free_dlistint(&stack);
