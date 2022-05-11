@@ -12,16 +12,9 @@
 
 void add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
-	int i = 0, sum;
+	int sum;
 
-	while (temp != NULL)
-	{
-		temp = temp->next;
-		i++;
-	}
-
-	if (i < 2 || *stack == NULL || stack == NULL)
+	if ((*stack)->next == NULL || *stack == NULL || stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
@@ -29,6 +22,8 @@ void add(stack_t **stack, unsigned int line_number)
 
 	sum = (*stack)->n + (*stack)->next->n;
 	(*stack)->next->n = sum;
+	(*stack) = (*stack)->next;
+	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
 
@@ -44,29 +39,25 @@ void add(stack_t **stack, unsigned int line_number)
 
 void sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
-	int i = 0, difference;
+	int difference;
 
-	while (temp != NULL)
-	{
-		temp = temp->next;
-		i++;
-	}
 
-	if (i < 2 || *stack == NULL || stack == NULL)
+	if ((*stack)->next == NULL || *stack == NULL || stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	difference = (*stack)->n - (*stack)->next->n;
-	(*stack)->next->n = difference;
+	(*stack)->next->n = abs(difference);
+	(*stack) = (*stack)->next;
+	free((*stack)->prev);
 	(*stack)->prev = NULL;
 
 }
 
 /**
- * div - divides values of 2 top elements
+ * _div - divides values of 2 top elements
  * @stack: the stack to assess
  * @line_number: line number from monty
  *
@@ -77,23 +68,22 @@ void sub(stack_t **stack, unsigned int line_number)
 
 void _div(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
-	int i = 0, quotient;
+	int quotient;
 
-	while (temp != NULL)
-	{
-		temp = temp->next;
-		i++;
-	}
-
-	if (i < 2 || *stack == NULL || stack == NULL)
+	if ((*stack)->next == NULL || *stack == NULL || stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	quotient = (*stack)->n / (*stack)->next->n;
 	(*stack)->next->n = quotient;
+	(*stack) = (*stack)->next;
+	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
 
@@ -109,16 +99,9 @@ void _div(stack_t **stack, unsigned int line_number)
 
 void mul(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
-	int i = 0, product;
+	int product;
 
-	while (temp != NULL)
-	{
-		temp = temp->next;
-		i++;
-	}
-
-	if (i < 2 || *stack == NULL || stack == NULL)
+	if ((*stack)->next == NULL || *stack == NULL || stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
@@ -126,6 +109,8 @@ void mul(stack_t **stack, unsigned int line_number)
 
 	product = (*stack)->n * (*stack)->next->n;
 	(*stack)->next->n = product;
+	(*stack) = (*stack)->next;
+	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
 
@@ -141,22 +126,21 @@ void mul(stack_t **stack, unsigned int line_number)
 
 void mod(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
-	int i = 0, remainder;
+	int remainder;
 
-	while (temp != NULL)
-	{
-		temp = temp->next;
-		i++;
-	}
-
-	if (i < 2 || *stack == NULL || stack == NULL)
+	if ((*stack)->next == NULL || *stack == NULL || stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	remainder = (*stack)->n % (*stack)->next->n;
 	(*stack)->next->n = remainder;
+	(*stack) = (*stack)->next;
+	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
