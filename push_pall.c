@@ -24,7 +24,6 @@ int is_integer(const char *n)
  * push - push an element to the stack
  * @stack: stack to add to
  * @line_number: line number in monty file
- * @value: value of new node
  */
 
 void push(stack_t **stack, unsigned int line_number)
