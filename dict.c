@@ -30,7 +30,6 @@ void ops(char *opcode, stack_t **stack, unsigned int line_number)
 	{
 		if (strcmp(opcode, ops[i].opcode) == 0)
 		{
-			printf("there is match ops\n");
 			ops[i].f(stack, line_number);
 			return;
 		}
