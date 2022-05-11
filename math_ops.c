@@ -81,7 +81,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
-	quotient = (*stack)->n / (*stack)->next->n;
+	quotient = (*stack)->next->n / (*stack)->n;
 	(*stack)->next->n = quotient;
 	(*stack) = (*stack)->next;
 	free((*stack)->prev);
@@ -137,7 +137,7 @@ void mod(stack_t **stack, unsigned int line_number)
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
-	(*stack)->next->n = (*stack)->n % (*stack)->next->n;
+	(*stack)->next->n = (*stack)->next->n % (*stack)->n;
 	(*stack) = (*stack)->next;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
