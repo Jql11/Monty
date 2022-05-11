@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
-  *token - token opcode
+  *_token - token opcode
   *@buffer: buffer;
   *Return: 0 on success, -1 if failed
   */
