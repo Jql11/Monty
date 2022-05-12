@@ -32,14 +32,17 @@ void pstr(stack_t **stack, unsigned int line_number)
 	if (!stack)
 		return;
 	if (!*stack)
+	{
 		printf("\n");
+		return;
+	}
 	while (*stack != NULL && (*stack)->n != 0)
 	{
 		if ((*stack)->n >= 0 && (*stack)->n <= 127)
 			printf("%c", (*stack)->n);
 		else
 		{
-			printf("\n");
+			free_dlistint(*stack);
 			exit(EXIT_FAILURE);
 		}
 		*stack = (*stack)->next;
