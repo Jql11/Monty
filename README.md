@@ -1,4 +1,5 @@
 # Monty - it's not quite Python :snake:
+![The original Monty](https://github.com/Jql11/monty/blob/main/monty.png)
 A C interpreter for Monty ByteCode files as part of the [Holberton School](https://holbertonschool.com.au/) Foundations curriculum for Low-Level Programming.
 
 ## Usage :clapper:
@@ -41,7 +42,7 @@ All files are written in C programming language and follows the
 - **push_pall.c:** Functions to print to stdout
 - **rot.c:** Functions to rotate the stack
 
-## Operation Codes ::
+## Operation Codes :computer:
 The following operation codes can be used:
 | Opcode | Description |
 | -------| ----------- |
