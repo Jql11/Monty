@@ -56,4 +56,5 @@ void pstr(stack_t **stack, unsigned int line_number);
 void (*ops(char *opcode))(stack_t **stack, unsigned int line_number);
 /*void handle_command(char *argv);*/
 int is_integer(const char *n);
+void rotl(stack_t **stack, unsigned int line_number);
 #endif
