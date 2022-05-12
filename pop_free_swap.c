@@ -33,8 +33,8 @@ void pop(stack_t **stack, unsigned int line_number)
 	current = *stack;
 	if ((*stack)->next == NULL)
 	{
-		*stack = NULL;
 		free(current);
+		*stack = NULL;
 	}
 	else
 	{
