@@ -24,6 +24,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 		temp = temp->next;
 	}
 	temp->n = value;
+	temp->next = NULL;
 }
 
 /**
