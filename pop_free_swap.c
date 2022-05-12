@@ -1,8 +1,8 @@
 #include "monty.h"
 
 /**
- * free_dlistint - frees a dlistint_t
- *@head: head
+ * free_dlistint - frees a double linked list
+ * @stack: stack to free
  * Return: void
  */
 void free_dlistint(stack_t *stack)
@@ -45,7 +45,7 @@ void pop(stack_t **stack, unsigned int line_number)
 }
 /**
  * nop - do nothing
- * @h: head of list
+ * @stack: stack
  * @line_number: bytecode line number
  */
 void nop(stack_t **stack, unsigned int line_number)
