@@ -39,8 +39,7 @@ int main(int ac, char *argv[])
 				fclose(fd);
 				exit(EXIT_FAILURE);
 			}
-			else
-				ops(token)(&stack, line);
+			ops(token)(&stack, line);
 		}
 		line++;
 	}
@@ -49,6 +48,3 @@ int main(int ac, char *argv[])
 	fclose(fd);
 	return (0);
 }
-
-
-
