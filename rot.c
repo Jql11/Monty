@@ -15,7 +15,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 	int value = (*stack)->n;
 	(void)line_number;
 
-	if (*stack == NULL || stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return;
 
 	while (temp->next != NULL)
@@ -40,7 +40,7 @@ void rotr(stack_t **stack, unsigned int line_number)
 	int value = (*stack)->n;
 	(void)line_number;
 
-	if (*stack == NULL || stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return;
 
 	while (temp->next != NULL)
