@@ -31,7 +31,7 @@ void push(stack_t **stack, unsigned int line_number)
 	char *value;
 
 	value = strtok(NULL, " \n\t\a\r");
-        if (!stack || is_integer(value) == -1)
+        if (!stack || value == NULL || is_integer(value) == -1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_dlistint(*stack);
