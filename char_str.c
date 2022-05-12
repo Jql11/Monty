@@ -26,9 +26,23 @@ void pchar(stack_t **stack, unsigned int line_number)
   * @stack: stack
   * @line_number: line number
   */
+
 void pstr(stack_t **stack, unsigned int line_number)
 {
+	stack_t *temp = *stack;
 	(void)line_number;
+
+	while (temp != NULL)
+	{
+		if (temp->n <= 0 || temp->n > 127)
+			break;
+		printf("%c", temp->n);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+
+/**	(void)line_number;
 	if (!stack)
 		return;
 	if (!*stack)
@@ -47,5 +61,4 @@ void pstr(stack_t **stack, unsigned int line_number)
 		}
 		*stack = (*stack)->next;
 	}
-	printf("\n");
-}
+	printf("\n"); */
