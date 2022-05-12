@@ -48,8 +48,8 @@ void sub(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	difference = (*stack)->n - (*stack)->next->n;
-	(*stack)->next->n = abs(difference);
+	difference = (*stack)->next->n - (*stack)->n;
+	(*stack)->next->n = difference;
 	(*stack) = (*stack)->next;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
