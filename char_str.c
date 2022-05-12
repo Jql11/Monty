@@ -22,7 +22,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
-  *pstr - prints the string srtarting at the top of the stack, followed by newline
+  *pstr - print string srtarting at the top of the stack, followed by newline
   * @stack: stack
   * @line_number: line number
   */
