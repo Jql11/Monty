@@ -3,8 +3,7 @@
     <img src="https://github.com/Jql11/monty/blob/main/monty.png">
 </p>
 A C interpreter for Monty ByteCode files as part of the
-[Holberton School Foundations](http://holbertonschool.com.au) curriculum for
-Low-Level Programming.
+Holberton School Foundations curriculum for Low-Level Programming.
 
 ## Usage :clapper:
 To use Monty, clone the repo and run the following (where `filename.m` is
