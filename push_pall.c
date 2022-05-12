@@ -10,7 +10,7 @@ int is_integer(const char *n)
 	int i = 0;
 
 	if (n[0] == '-')
-                 i = 1;
+		i = 1;
 	for (; n[i] != '\0'; i++)
 	{
 		if (!isdigit(n[i]))
@@ -31,7 +31,7 @@ void push(stack_t **stack, unsigned int line_number)
 	char *value;
 
 	value = strtok(NULL, " \n\t\a\r");
-        if (!stack || value == NULL || is_integer(value) == -1)
+	if (!stack || value == NULL || is_integer(value) == -1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_dlistint(*stack);
