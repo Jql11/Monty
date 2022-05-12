@@ -23,6 +23,7 @@ void (*ops(char *opcode))(stack_t **stack, unsigned int line_number)
 		{"nop", nop},
 		{"pchar", pchar},
 		{"pstr", pstr},
+		{"rotl", rotl},
 		{NULL, NULL}
 	};
 
