@@ -7,30 +7,21 @@
   */
 int main(int ac, char *argv[])
 {
-	if (ac != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	handle_command(argv[1]);
-	return (0);
-}
-/**
- * handle_command - Read file
- * @argv: Arguments
- */
-void handle_command(char *argv)
-{
 	stack_t *stack = NULL;
 	size_t bufsize = 0;
 	FILE *fd = NULL;
 	unsigned int line = 1;
 	char *buffer = NULL, *token = NULL;
 
-	fd = fopen(argv, "r");
+	if (ac != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	fd = fopen(argv[1], "r");
 	if (!fd)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&buffer, &bufsize, fd) != -1)
@@ -43,6 +34,9 @@ void handle_command(char *argv)
 			if (!ops(token))
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
+				free(buffer);
+				free_dlistint(stack);
+				fclose(fd);
 				exit(EXIT_FAILURE);
 			}
 			else
@@ -53,6 +47,7 @@ void handle_command(char *argv)
 	free(buffer);
 	free_dlistint(stack);
 	fclose(fd);
+	return (0);
 }
 
 
