@@ -1,0 +1,27 @@
+#include "monty.h"
+
+/**
+ * rotl - rotate stack to top
+ * @stack: the stack to rotate
+ * @line_number: line number in monty, not used
+ *
+ * Description: top element becomes last
+ * second element becomes top
+ */
+
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+	int value = (*stack)->n;
+	(void)line_number;
+
+	if (*stack == NULL || stack == NULL)
+		return;
+
+	while (temp->next != NULL)
+	{
+		temp->n = temp->next->n;
+		temp = temp->next;
+	}
+	temp->n = value;
+}
