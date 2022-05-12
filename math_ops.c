@@ -1,5 +1,5 @@
 #include "monty.h"
-0;136;0c
+
 /**
  * add - sums values of 2 top elements
  * @stack: the stack to assess
@@ -83,7 +83,7 @@ void _div(stack_t **stack, unsigned int line_number)
 	}
 	quotient = (*stack)->next->n / (*stack)->n;
 	(*stack)->next->n = quotient;
-	*stack = (*stack)->next;
+	(*stack) = (*stack)->next;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
